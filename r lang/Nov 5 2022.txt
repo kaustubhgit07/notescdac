@@ -1,0 +1,492 @@
+#install.packages("tidyverse")
+library(tidyverse)
+view(diamonds)
+?diamonds
+str(diamonds)
+names(diamonds)
+
+
+install.packages("D:/C Drive/Desktop/SURAJ SINGH/Teaching/C-DAC/Lecture Notes/tidyverse_1.3.1.tar.gz", repos = NULL, type="source")
+
+#%>% is called the forward pipe operator in R
+#What the function does is to pass the left hand side of the operator 
+#to the first argument of the right hand side of the operator. 
+#In the following example, the data frame iris gets passed to head():
+
+#library(magrittr)
+iris %>% head()
+head(iris)
+
+#iris %>% head() %>% summary() is equivalent to summary(head(iris))
+
+#mutate
+# Adds new columns or modifies current variables in the dataset.
+
+#Create three new column in diamonds dataset namely JustOne store 1 in it,Values store something in it,
+diamonds %>% 
+  mutate(JustOne = 1,
+         Values = "something",
+         Simple = TRUE)
+
+#diamonds %>% mutate(JustOne = 1,Values = "something",Simple = TRUE)
+
+
+
+diamonds.new <- # saving changes to diamonds as a new object
+  diamonds %>%  # original dataset
+  mutate(price200 = price - 200,        # $200 OFF from the original price
+         price20perc = price * .20,     # 20% of the original price
+         price20percoff = price * 0.80, # 20% OFF from the original price
+         pricepercarat = price / carat, # ratio of price to carat
+         pizza = depth ^ 2)             # Square the original depth
+
+diamonds.new
+#Create column name price200 in diamonds dataset and store 
+#price - 200 in it.
+
+
+
+
+
+
+
+
+str(diamonds.new)
+
+#nesting functions
+
+diamonds %>% 
+  mutate(m = mean(price))
+
+diamonds %>% mutate(m = mean(price))
+
+diamonds %>% 
+  mutate(m = mean(price),     # calculates the mean price
+         sd = sd(price),      # calculates standard deviation
+         med = median(price)) # calculates the median price
+
+#recode()
+#modifies the values within a variable. Here is the basic structure for using recode
+
+#data %>% mutate(Variable = recode(Variable, "old value" = "new value"))
+
+gujarat
+Gujarat
+class(diamonds)
+diamonds %>% 
+  mutate(cut.new = recode(cut,
+                          "Ideal" = "IDEAL"))
+
+diamonds %>% 
+  mutate(cut.new = recode(cut,
+                          "Ideal" = "IDEAL",
+                          "Fair" = "Okay",
+                          "Premium" = "pizza"))
+
+# creating a dataset with 2 variables (Sex , TestScore)
+Sex <- factor(c("male", "m", "M", "Female", 
+                     "Female", "Female"))
+TestScore <- c(10, 20, 10, 25, 12, 5)
+dataset <- tibble(Sex, TestScore)
+str(dataset)
+
+?tibble
+
+dataset %>% 
+  mutate(Sex.new = recode(Sex, 
+                          "m" = "Male",
+                          "M" = "Male",
+                          "male" = "Male"))
+
+dataset = as.data.frame(dataset)
+#summarize()
+#collapses all rows and returns a one-row summary
+
+diamonds %>% 
+  summarize(avg.price = mean(price))
+
+diamonds %>% 
+  summarize(avg.price = mean(price),     # average price of all diamonds
+            dbl.price = mean(price) * 2, # calculating double the average price
+            random.add = 1 + 2,          # a math operation without an existing variable 
+            avg.carat = mean(carat),     # average carat size of all diamonds
+            stdev.price = sd(price))     # calculating the standard deviation 
+
+#group_by() and ungroup()
+
+## Creating identification number to represent 50 individual people
+ID <- c(1:50)
+?rep
+## Creating sex variable (25 males/25 females)
+Sex <- rep(c("male", "female"), 25) # rep stands for replicate
+## Creating age variable (20-39 year olds)
+Age <- c(26, 25, 39, 37, 31, 34, 34, 30, 26, 33,
+         39, 28, 26, 29, 33, 22, 35, 23, 26, 36,
+         21, 20, 31, 21, 35, 39, 36, 22, 22, 25,
+         27, 30, 26, 34, 38, 39, 30, 29, 26, 25,
+         26, 36, 23, 21, 21, 39, 26, 26, 27, 21)
+
+## Creating a dependent variable called Score
+Score <- c(0.010, 0.418, 0.014, 0.090, 0.061, 0.328, 0.656, 0.002, 0.639, 0.173,
+           0.076, 0.152, 0.467, 0.186, 0.520, 0.493, 0.388, 0.501, 0.800, 0.482,
+           0.384, 0.046, 0.920, 0.865, 0.625, 0.035, 0.501, 0.851, 0.285, 0.752,
+           0.686, 0.339, 0.710, 0.665, 0.214, 0.560, 0.287, 0.665, 0.630, 0.567,
+           0.812, 0.637, 0.772, 0.905, 0.405, 0.363, 0.773, 0.410, 0.535, 0.449)
+## Creating a unified dataset that puts together all variables
+data <- tibble(ID, Sex, Age, Score)
+
+#average score of male and female separately
+data %>%
+  group_by(Sex) %>%
+  summarize(m = mean(Score), # calculates the mean
+            s = sd(Score), # calculates the standard deviation
+            n = n()) %>% # calculates the total number of observations
+  ungroup()
+
+
+data %>%
+  group_by(Sex, Age) %>% # grouped by Sex and Age
+  summarize(m = mean(Score),
+            s = sd(Score),
+            n = n()) %>%
+  ungroup()
+
+
+#mutate() and group_by()
+#We could also utilize mutate() after group_by() to add a new column based on the group.
+
+data %>%
+  group_by(Sex) %>%
+  mutate(m = mean(Score)) %>% # calculates mean score by Sex
+  ungroup()
+
+## Why ungroup
+data %>%
+  group_by(Sex) %>%
+  mutate(m = mean(Age)) %>% # calculates the average age of males and females
+  mutate(x = mean(Score)) %>% # counts number of participants
+  ungroup() # closing ungroup()
+
+
+data %>%
+  group_by(Sex) %>%
+  mutate(m = mean(Age)) %>% # calculates the average age of males and females
+  ungroup() %>% # nested ungroup()
+  mutate(x = mean(Score)) # counts number of participants
+
+data %>%
+  group_by(Sex) %>%
+  mutate(m = mean(Age)) %>% # calculates the average age of males and females
+  ungroup() %>% # nested ungroup()
+  mutate(x = mean(Score)) # counts number of participants
+
+
+#filter()
+
+#Only retain specific rows of data that meet the specified requirement(s)
+
+diamonds %>% filter(cut == "Fair")
+
+diamonds %>%
+  filter(cut == "Fair" | cut == "Good", price <= 600)
+
+diamonds %>%
+  filter(cut %in% c("Fair","Good"), price <= 600)
+
+# Your cut should be Fair  & Good
+diamonds %>%
+  filter(cut == "Fair", cut == "Good", price <= 600)
+
+diamonds %>%
+  filter(cut == "Fair", cut == "Good", price <= 600)
+
+diamonds %>%
+  filter(cut == "Fair" , depth < 60 , price <= 600)
+
+# Your cut should be Fair  & Good
+diamonds %>%
+  filter(cut == "Fair", cut == "Good", price <= 600)
+
+
+
+
+
+
+#
+diamonds %>%
+  filter(price %in% seq(c(300:650)))
+
+#Only display data from diamonds that do not have a cut value of Fair:
+  diamonds %>% filter(cut != "Fair")
+
+  
+#select()
+#Function: Select only the columns (variables) that you want to see. Gets rid of all other columns. You can
+#to refer to the columns by the column position (first column) or by name. The order in which you list the
+#column names/positions is the order that the columns will be displayed.
+  
+diamonds %>% select(cut, color)
+
+diamonds %>% select(1:5)
+# or
+diamonds %>% select(1,2,4,5)
+#Retain all of the columns except for cut:
+  diamonds %>% select(-cut)
+#Retain all of the columns except for cut and color:
+  diamonds %>% select(-cut, -color)
+#Retain all of the columns except for the first five columns:
+  diamonds %>% select (-1,-2,-3,-4,-5)
+# or
+diamonds %>% select(-(1:5))
+  
+
+
+#arrange()
+#Allows you arrange values within a variable in ascending or descending order 
+#(if that is applicable to your values). This can apply to both numerical and non-numerical values.
+
+
+#Arrange cut by alphabetical order (A to Z):
+  diamonds %>% arrange(cut)
+#Arrange price by numerical order (lowest to highest):
+  diamonds %>% arrange(price)
+#Arrange cut in descending alphabetical order:
+  diamonds %>% arrange(desc(cut))
+#Arrange price in descending numerical order:
+  diamonds %>% arrange(desc(price))
+
+  
+#count()
+#Collapses the rows and counts the number of observations per group of values.
+
+#Count the number of values for each cut:
+diamonds %>% count(cut)
+  # is the same as
+diamonds %>% group_by(cut) %>% count()  
+
+#rename()
+
+diamonds %>% rename(PRICE = price)
+
+diamonds %>% rename(length = x, width = y, depth = z)
+
+#taking input from user
+
+var = readline()
+
+{
+  var1 = readline("Enter first number:");
+  var2 = readline("Enter second number:");
+  
+}
+
+
+
+var1
+var2
+class(var1)
+#create a vector by taking age as an input from 5 of your classmates
+
+
+
+#GGplot2
+#Grammer of Graphics
+install.packages("ggplot2")
+library(ggplot2)
+car = read.csv("D:/C Drive/Desktop/SURAJ SINGH/Teaching/COLLEGES/RJ College/2022-2023/PG/MSC SEM I/DATA/archive/CarPrice_Assignment_v1.csv")
+dim(car)
+View(car)
+View(colors())
+colors()
+ggplot(data = car)
+ggplot(data = car,aes(x=price))
+ggplot(data = car,aes(x=price))+geom_histogram()
+ggplot(data = car,aes(x=price))+geom_histogram(fill = "darkorchid3")
+ggplot(data = car,aes(x=price))+geom_histogram(fill = "darkorchid3",col = "darkorange")
+#by default 30 bins are there
+ggplot(data = car,aes(x=price))+geom_histogram(fill = "darkorchid3",col = "darkorange",bins = 50)
+ggplot(data = car,aes(x=price))+geom_histogram(fill = "darkorchid3",col = "darkorange",binwidth = 2000)
+
+ggsave("D:/C Drive/Desktop/SURAJ SINGH/Teaching/COLLEGES/RJ College/2022-2023/PG/MSC SEM I/DATA/archive/plot1.pdf")
+ggsave("D:/C Drive/Desktop/SURAJ SINGH/Teaching/COLLEGES/RJ College/2022-2023/PG/MSC SEM I/DATA/archive/plot1.png")
+?aes
+?geom_histogram
+ggplot(data = car,aes(x = price,fill = fueltype)) +geom_histogram()
+ggplot(data = car,aes(x = price,fill = fueltype)) +geom_histogram()
+ggplot(data = car,aes(x = price,fill = carbody)) +geom_histogram()
+ggplot(data = car,aes(x = price,fill = enginelocation)) +geom_histogram()
+
+ggplot(data = car,aes(x=horsepower))+geom_histogram()
+ggplot(data = car,aes(x=horsepower))+geom_histogram(fill = "khaki3",col = "lavenderblush")
+ggplot(data = car,aes(x = horsepower,fill = cylindernumber)) +geom_histogram()
+
+min(car$price)
+max(car$price)
+
+
+ggplot(data = car,aes(x=price))+geom_histogram(fill = 1:30)
+
+#____________________________________
+#barplot is used to understand the distn of categorical columns & 
+#histogram is used to understand the distn of continous numerical columns
+
+#barplot
+ggplot(data = car,aes(x = carbody)) + geom_bar()
+ggplot(data = car,aes(x = carbody)) + geom_bar(fill = "palegreen4")
+ggplot(data = car,aes(x = carbody)) + geom_bar(fill = "palegreen4",col = "green") 
+
+ggplot(data = car,aes(x = carbody,fill = doornumber)) + geom_bar()
+ggplot(data = car,aes(x = carbody,fill = doornumber)) + geom_bar(position = "dodge")
+
+View(mtcars)
+ggplot(data = mtcars,aes(x = cyl)) + geom_bar()
+ggplot(data = mtcars,aes(x = cyl,fill = gear)) + geom_bar()
+?geom_histogram
+
+ggplot(data = car,aes(x = fuelsystem)) + geom_bar()
+ggplot(data = car,aes(x = fuelsystem)) + geom_bar(fill = "violet",col = "tomato")
+ggplot(data = car,aes(x = fuelsystem,fill = fuelsystem)) + geom_bar()
+ggplot(data = car,aes(x = fuelsystem,fill = enginetype)) + geom_bar()
+
+#__________________________________
+#ScatterPlot
+# Y & X are continuous numerical columns
+ggplot(data = car,aes(y = price,x = enginesize)) + geom_point()
+ggplot(data = car,aes(y = price,x = enginesize)) + geom_point(col = "yellowgreen")
+ggplot(data = car,aes(y = price,x = enginesize,col = cylindernumber)) + geom_point()
+ggplot(data = car,aes(y = price,x = enginesize,col = cylindernumber)) + geom_point(size = 2)
+ggplot(data = car,aes(y = price,x = enginesize,col = cylindernumber,shape = fueltype)) + geom_point(size = 2)
+
+ggplot(data = car,aes(y = horsepower,x = citympg)) + geom_point()
+ggplot(data = car,aes(y = horsepower,x = citympg)) + geom_point(col = "rosybrown")
+ggplot(data = car,aes(y = horsepower,x = citympg,col = carbody)) + geom_point(size=2)
+
+#____________________________________________________
+#LinePlot
+ggplot(data = car,aes(y = carlength,x = carwidth)) + geom_line()
+ggplot(data = car,aes(y = carlength,x = carwidth)) + geom_line(col = "red")
+ggplot(data = car,aes(y = carlength,x = carwidth,col = fueltype)) + geom_line()
+
+ggplot(data = car,aes(y = citympg,x = highwaympg)) + geom_line()
+ggplot(data = car,aes(y = citympg,x = highwaympg)) + geom_line(col = "sandybrown")
+ggplot(data = car,aes(y = citympg,x = highwaympg,col = doornumber)) + geom_line()
+
+
+#Scatter-plot
+ggplot(data = car,aes(y = price,x = enginesize)) + geom_point() + geom_line()
+
+
+#geom_smooth
+ggplot(data = car,aes(y = price,x = enginesize)) + geom_point() + geom_smooth()
+ggplot(data = car,aes(y = price,x = enginesize)) + geom_point(col = "palegreen4") + geom_smooth(col = "orange")
+
+#boxplot
+#distribution of categorical column wrt continous column
+ggplot(data = car,aes(y = price,x = carbody)) + geom_boxplot()
+ggplot(data = car,aes(y = price,x = carbody)) + geom_boxplot(fill = "peachpuff3")
+ggplot(data = car,aes(y = price,x = carbody,fill = aspiration)) + geom_boxplot()
+
+ggplot(data = car,aes(y = peakrpm,x = fueltype)) + geom_boxplot()
+ggplot(data = car,aes(y = peakrpm,x = fueltype)) + geom_boxplot(fill = "salmon2")
+
+#Areaplot
+#area depicting the distribution of particular column
+
+ggplot(data = car,aes(x = price)) + geom_area(stat = "bin")
+ggplot(data = car,aes(x = price)) + geom_area(stat = "bin",bins = 45)
+ggplot(data = car,aes(x = price)) + geom_area(stat = "bin",bins = 45,fill = "yellow")
+
+
+
+ggplot(data = car,aes(x = price,fill = fuelsystem)) + geom_area(stat = "bin")
+ggplot(data = car,aes(x = price,fill = carbody)) + geom_area(stat = "bin")
+
+#facetgrid
+#divide this category into different subgroups
+ggplot(data = car,aes(x = price,fill = carbody)) +geom_area(stat = "bin") + facet_grid(~carbody)
+
+#theme
+t1 = ggplot(data = car,aes(y = price,x = enginesize)) + geom_point(col = "palegreen4") + geom_smooth(col = "orange")
+
+t2 = t1 + theme(panel.background = element_rect(fill = "peachpuff"))
+t3 = t2 + theme(plot.background = element_rect(fill = "salmon"))
+
+t4 = t3 + ggtitle("Price vs Engine Size")
+
+t4 + theme(plot.title = element_text(hjust = 0.5,colour = "Green"))
+
+install.packages("cowplot")
+library(cowplot)
+plot_grid(a,b)
+
+a = ggplot(data = car,aes(x = price,fill = fuelsystem)) + geom_area(stat = "bin")
+b = ggplot(data = car,aes(x = price,fill = carbody)) + geom_area(stat = "bin")
+
+
+#plotly
+#used to make interactive plots
+install.packages("plotly")
+library(plotly)
+plot_ly(data = car, x = ~enginesize, y = ~price)
+plot_ly(data = car, x = ~enginesize, y = ~price, color = ~enginetype)
+plot_ly(data = car, x = ~price, type = "histogram")
+plot_ly(data = car, x = ~price, type = "histogram",color = ~price)
+plot_ly(data = car, x = ~price, type = "histogram",color = ~x)
+plot_ly(data = car, x = ~price, type = "box")
+
+
+
+ggplot(data = mtcars,aes(x = gear,fill = cyl)) +geom_bar()
+
+
+#Joins
+
+
+#### Joins ####
+
+#how to create a table
+install.packages("data.table")
+library(data.table)
+Roll_NO <- c(1:8)
+Name <- c("Shreyas","Shraddha","Priyanka","Deep","Saptarhi","Dhanraj","Rohit","Niraj")
+STUDENT <- data.table(Roll_NO,Name)
+
+class(STUDENT)
+#Performing join by creating dataframe
+df1 = data.frame(CustomerId = c(1:6), Product = c("Mobile","Television","Pendrive","Hard_Disk","Watch","Fan"))
+df1 
+
+# data frame 2
+df2 = data.frame(CustomerId = c(2, 4, 6, 7, 8), State = c("Mumbai","Delhi","Chennai","Kolkata","Bangalore")) 
+df2 
+
+#Inner Join
+#### Inner Join using merge function
+df = merge(x=df1,y=df2,by="CustomerId")
+df
+?merge
+# Outer Join
+df = merge(x=df1,y=df2,by="CustomerId",all=TRUE)
+df
+
+#Left Join
+df = merge(x=df1,y=df2,by="CustomerId",all.x=TRUE)
+df
+
+#Create Two Dataframe Employeee_Name(Employee_ID, Employee_Name,Age) &
+#Employee_Detail(Employee_ID,Salary,Designation)
+#and perform Inner join & Outer Join 
+
+#Create one DataFrame with two Columns (store atleast 4 rows - atleast 
+# one column should be numeric)
+#print summary of that datframe,Structure of that dataframe,change the name of first col
+#Change the class of first column to character
+
+#aggregate
+#sapply
+
+
+
+#Join can also be done by using inbuilt dplyr library in R
+
+

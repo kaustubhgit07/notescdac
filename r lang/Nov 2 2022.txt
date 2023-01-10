@@ -1,0 +1,301 @@
+#### Control Statements in R####
+#if conditon
+if (condition) {
+  
+}
+
+#check whether the number is positive
+x = -2
+
+if (x>0) {
+  print(paste(x,"is positive"))
+}
+
+?paste
+
+X = 77
+y = "is positive"
+z = "and it is natural number"
+print()
+
+paste(X,y,z)
+
+#if - else
+
+x = -2
+if (x>0) {
+  print(paste(x,"is positive"))
+}else{
+  print(paste(x,"is negative"))}
+
+#if else if
+x <- 0
+class(x)
+if (x>0) {
+  print(paste(x,"is positive"))
+}else if (x<0){
+  print(paste(x,"is negative"))
+}else{
+  print(paste(x,"is neither positive nor negative"))
+}
+
+##Create a numeric vector of length 2 and print its 
+  max element. 
+
+#Create a numeric vector of length 3 and print its 
+  max element. 
+
+
+
+
+
+
+
+#Check whether the no is even or odd 
+     using control statement?
+#check whether the number is integer or not
+x=4
+if ( is.integer(x)) {
+  
+}else{
+  print(paste(x,"is not an integer"))}
+
+
+num1 = as.integer(readline("Enter a number: "))
+num2 = as.integer(readline("Enter a number: "))
+
+{
+  num1 = as.integer(readline("Enter I number: "))
+  num2 = as.integer(readline("Enter II number: "))
+  num3 = as.integer(readline("Enter III number: "))
+  num4 = as.integer(readline("Enter IV number: "))
+  
+}
+
+x = scan()
+#for loop
+for (variable in vector) {
+  
+}
+letters#use for printing alphabets
+LETTERS
+
+x<- letters[4:10]
+for (i in x) {
+  print(i)
+}
+
+for (q in 1:10) {
+  print(q)
+}
+#print multiplication table of 7 upto 7*22
+
+
+
+
+
+
+
+
+
+
+
+x=(1:22)
+for (i in x) { print(7*i)
+  
+}
+
+x <- 1:22
+for (i in x) {
+  print(paste("7*",i,'=',7*i))
+}
+
+v=seq(1,22)
+for (i in v) {
+  print(paste('7 x',i,'=',7*i))
+  
+}
+
+x1 = scan(what = character())
+
+#take input from the user and print it's factorial
+
+
+
+
+
+
+
+
+
+
+num = as.integer(readline("Enter a number: "))
+fact = 1
+if(num < 0) {
+  print("no is negative so factorial does not exist ")
+} else if(num == 0) {
+  print("The factorial of 0 = 1")
+} else {
+  for(i in 1:num) {
+    fact = fact * i
+  }
+  print(paste("The factorial of", num ,"=",fact))
+}
+
+
+#While loop
+
+while (condition) {
+  
+}
+
+x = 2
+while (x<=5) {
+  print(x)
+  x  x+1
+}
+
+x = 2
+while (x<=5) {
+  print(x)
+  #x = x+1
+}
+
+x = 2
+while (x<=5) {
+  print(x)
+  x = x+0.5
+}
+
+format(20000000000000000000000000000000000,scientific = F)
+#Print multiplication table of 7 upto 7*22 using while loop
+
+
+
+num=7  
+while (num<=22) {
+  print(paste("7 X",num,"=",7*num))
+  num=num+1
+}
+
+
+#Print sum of first n natural numbers
+
+#repeat statement
+
+x = 6
+#print 1 to 7
+
+repeat{
+  print(x)
+  x = x+1
+  if (x>7) {
+    break
+  }
+}
+
+repeat{
+  print(x)
+  x = x+1
+ 
+}
+
+
+
+#Print multiplication table of 7 upto 7*22 using repeat statement
+
+x=1
+repeat{
+  print(paste("7 X",x,"=",7*x))
+  x=x+1
+  if(x>22){
+    break
+  }
+}
+
+
+#next statement
+x <- 1:17
+
+#print even number
+
+for (i in x) {
+  if (i%%2 !=0) {
+    next
+  }
+  print(i)
+}
+
+#print odd numbers using next statement
+x<- seq(1:17)
+
+for (i in x) {
+  if(i%%2==0){
+    next
+  }
+  print(i)
+}
+
+## Print number greater than 20 
+
+x = 15:25
+
+
+
+
+
+
+
+
+
+
+
+
+for (i in x) {
+  if (i>=20) {
+    next
+  }
+  print(i)
+}
+
+#Print multiplication table of upto 7*24 
+#ut only even multiple
+x=1:24
+for (i in x){
+  if (i%%2!=0){
+    next
+  }
+  print(paste('7 x',i,'=',7*i))  
+}
+
+x = c(NA,2,3)
+y = c(6,7,8)
+z = c(10,11,NA)
+
+d7 = data.frame(x = x, y = y,z = z)
+is.na(d7)
+is.na(d7$x)
+
+sum(is.na(d7$x))
+sum(is.na(d7))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

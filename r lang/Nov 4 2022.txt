@@ -1,0 +1,368 @@
+#Line Plot
+data()
+data = iris
+View(data)
+class(iris)
+iris$
+
+?plot
+v <- c(8,14,26,5,43)
+
+
+par(mfrow = c(1,2))
+plot(v,type="p")
+plot(v,type="o")
+
+par(bg = "red")
+
+
+par(mfrow = c(1,1))
+
+plot(v,type="l")
+
+plot(v, type = "o", col = "red",xlab = "X - Axis", 
+     ylab = "Y - Axis",main = "Line Chart")
+
+
+data = iris
+names(data)
+View(data)
+str(data)
+
+par(mfrow = c(1,2))
+plot(data$Sepal.Length,
+       type = "o",col = "red",
+     main = "Comparison between Sepal Length & Petal Length")
+
+lines(data$Petal.Length,type = "o",col = "blue")
+min(data$Sepal.Length)
+max(data$Sepal.Length)
+min(data$Petal.Length)
+max(data$Petal.Length)
+
+par(mfrow = c(1,2))
+plot(data$Sepal.Length,
+          type = "o",
+          col = "red",
+         main = "Comparison between Sepal Length & Petal Length")
+plot(data$Sepal.Length,
+          type = "o",
+          col = "red",
+         main = "Comparison between Sepal Length & Petal Length",
+     xlim = c(0,10))
+lines(data$Petal.Length,type = "o",col = "blue")
+
+
+
+
+
+
+plot(data$Sepal.Width,type = "o",
+    col = "red",
+    main = "Comparison between Sepal width & Petal width")
+
+lines(data$Petal.Width,type = "o",col = "blue")
+
+
+
+#Scatter Plot
+mtcars
+?mtcars
+data1 = mtcars
+View(data1) 
+
+data1 = mtcars
+View(data1) 
+names(data1)
+plot(data1$wt,data1$mpg,
+    xlab = "Weight",ylab = "Milage", main = "Weight vs Milage")
+
+plot(data1$wt,data1$mpg)
+abline(lm(mpg~wt,data = data1),col = 'red')
+
+lm(mpg~wt,data = data1)
+
+y = mx + c
+
+y = 5x + 7
+ x = 1
+
+y = 5*1 +7
+
+
+
+
+
+
+
+
+
+?plot
+pairs(~wt+mpg+disp+cyl, data = data1)
+
+
+     37.285       -5.344  
+
+
+mpg = wt*(-5.344) + 37.285
+
+
+
+Barplot - discrete
+Histogram - continous
+
+
+H = c(5,7,9,11)
+M = c("A","B","C","D")
+barplot(H,names.arg = M,col = "red",border = "green")
+
+#Bar Diagrams
+
+# Create the data for the chart
+H <- c(1,2,3,4,5)
+
+# Plot the bar chart 
+barplot(H)
+barplot(H, main="Car Distribution",
+xlab="Number of Gears",col = "Red")
+
+?table
+View(mtcars)
+?barplot
+# Simple Bar Plot
+counts <- table(mtcars$gear)
+class(counts)
+par(mfrow=c(1,2))
+
+barplot(mtcars$gear)
+barplot(counts)
+# = barplot(counts)
+#class(x)
+#x
+
+
+
+
+
+mtcars
+mtcars$gear
+view(mtcars)  
+barplot(counts, main="Car Distribution",
+        xlab="Number of Gears", col = "Red")
+?barplot
+# Simple Bar Plot
+counts <- table(mtcars$gear)
+View(mtcars)
+par(mfrow=c(1,1))
+
+barplot(mtcars$gear)
+mtcars
+mtcars$gear
+view(mtcars)  
+barplot(counts, main="Car Distribution",
+        xlab="Number of Gears", col = "Red")
+?barplot
+
+# Multiple
+counts <- table(mtcars$vs, mtcars$gear)
+counts
+rownames(counts)
+barplot(counts, 
+main="Car Distribution by Gears and VS",
+xlab="Number of Gears", 
+col=c("darkblue","red"),
+legend = rownames(counts,cex = 0.5), 
+beside = TRUE)
+legend("topright",
+ pch = 16, 
+col=c("darkblue","red"),c("g","v"),
+cex = 0.8)
+
+
+
+
+
+
+
+
+
+# Stacked
+
+counts <- table(mtcars$vs, mtcars$gear)
+barplot(counts, main="Car Distribution by Gears and VS",
+        xlab="Number of Gears", col=c("darkblue","red"),
+        legend = rownames(counts),beside = F)
+
+
+View(mtcars)
+
+###Percentage 
+prop.table(mtcars$vs)
+p1 = 
+as.matrix(prop.table(table(mtcars$vs))) * 100
+
+p2 =
+as.matrix(prop.table(table(mtcars$gear))) * 100
+
+
+
+
+
+
+
+
+#### Explain 
+k1 <- prop.table(table(mtcars$vs))*100
+
+k2 <- prop.table(table(mtcars$gear))* 100
+op <- par(mfrow=c(1,2))
+barplot(k1, legend=TRUE, names="status", ylab="Percent")
+barplot(k2, legend=TRUE, names="Type")
+
+#### Done
+
+par(mfrow=c(1,2))
+barplot(p1, names="status", ylab="Percent")
+barplot(p2, legend=F, names="Type")
+
+IQR = Inter Quartile Range = Q3 - Q1
+
+SIQR = Semi Inter Quartile Range = (Q3 - Q1)/2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#barplot
+
+H = c(5,7,9,11)
+M = c("A","B","C","D")
+barplot(H,names.arg = M,col = "red",border = "green")
+
+#Bar Diagrams
+
+# Create the data for the chart
+H <- c(1,2,3,4,5)
+
+# Plot the bar chart 
+barplot(H, main="Car Distribution",xlab="Number of Gears",col = "Red")
+?barplot
+# Simple Bar Plot
+counts <- table(mtcars$gear)
+
+par(mfrow=c(1,1))
+
+barplot(mtcars$gear)
+mtcars
+mtcars$gear
+view(mtcars)  
+barplot(counts, main="Car Distribution",
+        xlab="Number of Gears", col = "Red")
+?barplot
+# Simple Bar Plot
+counts <- table(mtcars$gear)
+View(mtcars)
+par(mfrow=c(1,1))
+
+barplot(mtcars$gear)
+mtcars
+mtcars$gear
+view(mtcars)  
+barplot(counts, main="Car Distribution",
+        xlab="Number of Gears", col = "Red")
+?barplot
+
+# Multiple
+counts <- table(mtcars$vs, mtcars$gear)
+rownames(counts)
+barplot(counts, main="Car Distribution by Gears and VS",
+        xlab="Number of Gears", col=c("darkblue","red"),
+        legend = rownames(counts,cex = 0.5), beside = TRUE)
+
+# Stacked
+
+counts <- table(mtcars$vs, mtcars$gear)
+barplot(counts, main="Car Distribution by Gears and VS",
+        xlab="Number of Gears", col=c("darkblue","red"),
+        legend = rownames(counts),beside = F)
+
+
+View(mtcars)
+
+###Percentage 
+p1 <- as.matrix(prop.table(table(mtcars$vs))) * 100
+p2 <- as.matrix(prop.table(table(mtcars$gear))) * 100
+#### Explain 
+k1 <- prop.table(table(mtcars$vs))*100
+
+k2 <- prop.table(table(mtcars$gear))* 100
+op <- par(mfrow=c(1,2))
+barplot(k1, legend=TRUE, names="status", ylab="Percent")
+barplot(k2, legend=TRUE, names="Type")
+
+#### Done
+
+par(mfrow=c(1,2))
+barplot(p1, legend=F, names="status", ylab="Percent")
+barplot(p2, legend=F, names="Type")
+
+#Pie Charts
+
+#Simple pie chart
+?paste
+?round
+?pie
+slices <- c(10, 12,4, 16, 8)
+lbls <- c("US", "UK", "Australia", "Germany", "France")
+pie(slices, labels = lbls, main="Pie Chart of Countries")
+pie(slices)
+#Pie chart with percentage written on it
+slices <- c(10, 12, 4, 16, 8)
+lbls <- c("US", "UK", "Australia", "Germany", "France")
+pct <- round(slices/sum(slices)*100)
+lbls <- paste(lbls, pct) # add percents to labels
+lbls <- paste(lbls,"%",sep="") # ad % to labels
+pie(slices,labels = lbls, col=rainbow(length(lbls)),
+    main="Pie Chart of Countries")
+
+#Stem & Leaf
+
+data_2 <- 10:100
+stem(data_2)
+
+
+data <- 11:99
+stem(11:120)
+par(mfrow = c(1,2))
+#Box - Plot
+?boxplot
+air <- airquality
+View(air)
+?boxplot
+boxplot(air$Ozone, main = "air$Ozone",col = "green",border = "red")
+boxplot(air$Ozone, main = "air$Ozone",col = "green",border = "red",horizontal = T)
+boxplot(air$Ozone, main = "air$Ozone",col = "green",border = "red",horizontal = F,notch = T)
+boxplot(air, main = "air",col = "green",border = "red")
+boxplot(Temp~Month,data = air, main = "Temp~Month",col = "green",border = "red")

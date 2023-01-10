@@ -1,0 +1,167 @@
+#### DATA FRAMES ####
+v = c(14,26,38,30) ### use c() to store several values in one variable
+
+v_2= c("Hello","Good morning","Nice to meet you","Me too")
+
+?data.frame
+# Create data frame with 2 columns: v and v_2
+D_1 <- data.frame(v,v_2)
+D_1
+#D_1.head
+head(D_1)
+View(D_1)
+class(D_1)
+str(D_1)
+
+D_1$v
+D_1$v_1
+names(D_1)
+dim(D_1)
+
+?data.frame
+D = data.frame(XYZ = 1:26,ABC = letters)
+D
+
+?head
+# Change colnames of all columns 
+colnames(D_1)
+colnames(D_1) <- c("PQR", "STU")
+
+#Change name of one column
+colnames(D_1)[colnames(D_1) == "PQR"] <- "XYZ"
+colnames(D_1)[1] <- "UVW"
+names(D_1)
+
+##
+fr_data <- data.frame("id" = c(1:5),
+					fr_name = c("A","B","C","D","E"),str)
+str(fr_data)
+summary(fr_data)
+
+fr_data$id
+#expand a dataframe
+
+fr_data$KGF = c("X","Y","Z","1","2")
+
+#Reordering the dataframe by column number
+fr_data[c(2,3,1)]
+names(fr_data)
+#Reordering the dataframe by column name
+d <- fr_data[c("fr_name","KGF","id")]
+fr_data <- fr_data[c("fr_name","KGF","id")]
+
+#Reordering the dataframe by column number
+D_1[c(2,3,4,1)]
+#Reordering the dataframe by column name
+d <- D_1[c("uvw","Employee","def")]
+
+
+#Add new column
+
+D_1$Employee <- c("1", "2", "3", "4")
+D_1$Employee_New <- c(1,2,3,4)
+str(D_1) #to check structure of dataframe
+rep("shruti",7)
+
+
+#Create a dataframe which has 5 columns and 10 rows 
+which consist information about your class
+
+# Change colnames of some columns
+colnames(D_1)[colnames(D_1) %in% c("XYZ", "STU")] <- 
+                          c("uvw", "def")
+
+colnames(D_1)[colnames(D_1) %in% c("XYZ", "STU")] <- 
+                          c("uvw", "def")
+
+actor = c(rep("SRK",5),rep("AKKI",5))
+D_1$abc = actor
+D_1[1:3,]
+
+# Create sub data frame with first 3 rows only
+D_2= D_1[1:3,]
+D_2
+
+rep("SRK,5)
+rep("Akki",5)
+
+    c(rep("SRK,3),rep("Akki",4),rep("Allu",2),rep("deepika",1))
+
+
+
+#Practise
+#Create a dataframe which has 3 columns & 10 rows 
+#column 1 is serial no column 2 is name of the item
+#column 3 is quantity purchase
+
+price = seq(110,200,10)
+length(price)
+df$Price_of_one_Q = price
+str(df)
+df$Total_Price = df$quantity_purchase*df$Price_of_one_Q
+df$Total_Price = quantity_purchase*Price_of_one_Q
+
+df$Total_Price = NULL #delete a column
+#add 4th column price of one quantity
+#add 5th column total price
+_________________________________________________________
+#if 20% discount is given then add 6th column of discounted 
+    price
+
+str(D)
+
+
+D = rbind(D,new)
+D = rbind(D,D1)
+D$col_name = as.charactor(D$col_name)
+new = c(11,"new1",12,20,12*20,0.8*12*20)
+D$col_name = as.factor(D$col_name)
+
+D = D[-c(2),]
+D = D[-c(2,4),]
+
+
+
+
+
+View(D)
+dim(D)
+D$XYZ = NULL
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#%in% operator in R, is used to identify if an element belongs to a vector.
+# Look at data frame's overall type
+class(D)
+
+# Look at columns' type
+class(D$XYZ)
+class(D$ABC)
+D$XYZ <- as.character(D$XYZ)
+D$ABC <- as.character(D$ABC)
+# Call a column in a data frame
+D_1$Employee # OR
+D_1$uvw
+#D_1[,1]
+
+# Create sub data frame with first 3 rows only
+D_2= D_1[1:3,]
+D_2

@@ -1,0 +1,246 @@
+#################Lists#####################
+#Lists are the R objects which contain elements of different types like - numbers,
+#strings, vectors and another list inside it. 
+#A list can also contain a matrix or a function as its elements.
+#List is created using list() function.
+
+?list()
+# Create a list containing strings, numbers, vectors and a logical
+# values.
+list_data <- list("Red", "Green", c(21,32,11), TRUE, 51.23, 119.1);list_data
+
+length(list_data)
+
+print(list_data)
+
+#Naming List Element
+list_data <- list(c("Jan","Feb","Mar"), matrix(c(3,9,5,1,-2,8), ncol = 2,nrow = 3),
+                  list("green",12.3))
+
+list_data <- list(I_Quarter<- c("Jan","Feb","Mar"), 
+                   A_Matrix<- matrix(c(3,9,5,1,-2,8), nrow = 2),
+                   A_Inner_list<- list("green",12.3))
+names(list_data)
+list_data[1]
+list_data[1][1]
+
+list_data[[1]]
+list_data[[1]][1]
+list_data[[1]][2]
+list_data[[1]][3]
+
+list_data[2]
+list_data[[2]][1]
+list_data[[2]][2]
+list_data[[2]][3]
+list_data[[2]][4]
+
+list_data[[3]][1]
+list_data[[3]][2]
+
+
+?list
+length(list_data)
+print(list_data)
+# Give names to the elements in the list.
+names(list_data)
+names(list_data) <- c("1st Quarter", "A_Matrix", "A Inner list")
+names(list_data)
+# Show the list.
+print(list_data)
+
+
+#Acessing List Elements
+#Acessing elements from the nested list
+
+
+# Access the first element of the list.
+print(list_data[1])
+
+#Practise
+list_data <- list(I_Quarter<- c("Jan","Feb","Mar"), A_Matrix<- matrix(c(3,9,5,1,-2,8), nrow = 2),
+                  A_Inner_list<- list("green",12.3))
+
+list_data[[1]] <- new_Quarter
+list_data
+new_Quarter <- c("June","July","Aug","Sept")
+
+
+# Access the third element. As it is also a list, all its elements will be printed.
+print(list_data[3])
+
+# Access the list element using the name of the element.
+print(list_data$A_Matrix)
+list_data$A_Matrix
+list_data[4]
+#Manipulating List Elements
+
+# Add element at the end of the list.
+list_data[4] <- "New element"
+print(list_data[4])
+
+
+# Remove the last element.
+list_data[4] <- NULL
+
+# Print the 4th Element.
+print(list_data[4])
+
+# Update the 3rd Element.
+list_data[3] <- "updated element"
+print(list_data[3])
+
+#Merging List
+# Create two lists.
+list1 <- list(1,2,3)
+list2 <- list("Sun","Mon","Tue")
+
+# Merge the two lists.
+merged.list <- c(list1,list2)
+
+
+# Print the merged list.
+print(merged.list)
+
+<- 
+list_data = list(I_Quarter= c("Jan","Feb","Mar"), 
+                 A_Matrix= matrix(c(3,9,5,1,-2,8), nrow = 2),
+                 A_Inner_list= list("green",12.3))
+names(list_data)
+
+list_data$I_Quarter
+list_data$A_Matrix
+list_data$A_Matrix[1,]
+list_data$A_Matrix[1,1]
+
+
+#append
+?append
+li = list('java','python')
+li
+
+li2 = append(li,2)
+li2
+
+li2 = append(li,2:3)
+li2
+
+#add element at specified position
+
+li = list('java','python',"C")
+li
+
+
+li2 = append(li,'R',after = 2)
+li2
+
+new = 1:21
+li2 = append(li,new)
+li2
+
+li = list(x = 'java',y = 'python',z = "C")
+li
+
+new = 1:5
+li2 = append(li,new)
+li2
+
+#li2 = append(li,new1 = 1:5)
+#li2
+
+install.packages("rlist")
+library(rlist)
+li = list(x = 'java',y = 'python',z = "C")
+li
+
+li2 = list.append(li,a = "R")
+li2
+
+new = 1:5
+li3 = list.append(li2,new)
+li3
+
+
+#Importing a dataset in R
+
+setwd("D:/C Drive/Desktop/SURAJ SINGH/Teaching/SM VITA/2022/OCT - SEPT/Lecture Notes/Data/")
+
+getwd()
+
+
+### Import  .txt with space separated values
+
+# read.table() function to import .txt files
+Titanic = read.table("Titanic_space_separated.txt", header=TRUE) # No "sep" term, as space is the default separator
+class(Titanic)
+View(Titanic)
+
+Orange = read.table("Orange_comma_separated.txt", header = TRUE, sep = ",") # sep= "," for comma separated files
+class(Orange)
+View(Orange)
+
+
+#import csv file
+
+#  Use read.csv() to import .csv files
+
+Countries = read.csv("Countries Population.csv")
+
+#import xlsx file
+install.packages("readxl")
+library(readxl)
+
+# Use read_excel() to import xlsx documents
+Countries_Region1 <- read_excel("Countries Region Mapping.xlsx")
+View(Countries_Region)
+
+Countries_Region2 <- read_excel("Countries Region Mapping.xlsx",sheet = 2)
+View(Countries_Region2)
+
+
+
+
+?read.table
+
+li = list(x = 'java',y = 'python',z = "C")
+li
+names(li)
+
+names(li) = c("a","b","c")#renaming all names at a time
+
+names(li)[names(li) == "c"] = "d" #Renaming only one name
+
+
+
+
+
+
+
+Titanic1 = read.table("Titanic_space_separated.txt") # No "sep" term, as space is the default separator
+
+
+
+
+
+
+
+
+
+
+
+
+
+Titanic = read.table("D:/C Drive/Desktop/SURAJ SINGH/Teaching/C-DAC/Lecture Notes/Data/Titanic_space_separated.txt",header=TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+

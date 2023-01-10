@@ -1,0 +1,187 @@
+# Set working directory (tells R where to import files from/export files to)
+
+
+setwd("C:/Desktop/SURAJ SINGH/Teaching/NMIMS/Data Science/")
+
+setwd("C:/Desktop/SURAJ SINGH/Teaching/NMIMS/Data Science/")
+
+# Get working directory
+getwd()
+
+
+### Import  .txt with space separated values
+
+# read.table() function to import .txt files
+Titanic = read.table("Titanic_space_separated.txt", header=TRUE) # No "sep" term, as space is the default separator
+dim(Titanic)
+names(Titanic)
+View(Titanic)
+?read.table
+class(Titanic)
+
+#Without setting working diectory
+#Titanic_1 = read.table("D:/C Drive/Desktop/SURAJ SINGH/Teaching/SM VITA/2022/OCT - SEPT/Lecture Notes/Data/Orange_comma_separated.txt", header=TRUE) # No "sep" term, as space is the default separator
+#View(Titanic_1)
+
+a<- read.table("",sep = "",header = TRUE)
+class(Titanic)
+
+Titanic = as.data.frame(Titanic)
+class(Titanic)
+names(Titanic)
+col
+
+
+a = read.csv("bike_buyers.csv")
+
+a = read.csv(file.choose())
+
+
+### SEE DATA
+
+# See all data
+View(Titanic)
+
+head(Titanic)
+## See first 10 rows
+head(Titanic)
+head(Titanic,10)
+
+tail(Titanic)
+# See last 5 rows
+tail(Titanic,5)
+
+str(Titanic)
+summary(Titanic)
+
+# Change column's type to character
+Titanic$Sex = as.factor(Titanic$Sex) # Sex column is overwritten by "character" version of Sex column
+
+summary(Titanic)
+
+# Change column's type to factor
+Titanic$Sex = as.factor(Titanic$Sex)
+
+
+#Check column name
+#Insert one column
+#Change column name by Index
+#Change column name by Column name
+#Change the order
+#Insert R rows
+#Delete rows
+#Cbind
+#export the file
+
+
+
+
+### Import .txt with comma separated values
+
+# read.table() function to import .txt files
+Orange = read.table("Orange_comma_separated.txt", header = TRUE, sep = ",") # sep= "," for comma separated files
+class(Orange)
+View(Orange)
+summary(Orange)
+
+Orange$Tree = as.factor(Orange$Tree)
+iris
+
+### Import .csv file
+
+
+#  Use read.csv() to import .csv files
+
+Countries = read.csv("Countries Population.csv")
+
+names(Countries)
+summary(Countries)
+str(Countries)
+Countries$`Country Name` = as.factor(Countries$`Country Name`)
+Countries$`Country Code` = as.factor(Countries$`Country Code`)
+## Note: Column names have spaces in them, hence are not in proper format. R add `this quotes` to treat columns normally
+## Next chapter covers how to get proper format for column names
+
+
+### Import excel document
+
+# Install readxl package to machine and load in Rsession to use read_excel() fucntion
+install.packages("readxl")
+library(readxl)
+
+# Use read_excel() to import xlsx documents
+Countries_Region <- read_excel("Countries Region Mapping.xlsx")
+
+data <- iris
+View(data)
+
+?write.csv
+write.csv(data,file = "C:\new_data.csv")
+#Check Dimension of data
+
+
+
+
+
+D_1 <- data.frame(v,v_2)
+D_1
+
+
+
+
+D_1 <- data.frame(v,v_2,row.names = c("A","B","C","D"))
+D_1
+
+rownames(D_1) = 1:4 
+rownames(D_1)[1] = "u"
+rownames(D_1)[1:3] = c("s","t","u")
+rownames(D_1)[c(1,4)] = c("x","y")
+
+#Operators
+#Vectors
+#Dataframe
+#Matrix
+#List
+#Importing datset and manipulation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+D_1
+class(D_1)
+row.names(D_1)[1] = "abc"
+row.names(D_1)[1:2] = c("abc","d")
+
+
+D_1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
